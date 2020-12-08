@@ -19,7 +19,7 @@ class Handler(BaseHTTPRequestHandler):
         
         #Post Access Token Request
         headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'HARTLEYCAP1', 'redirect_uri': 'https://127.0.0.1'}
+        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'AWESOMECAP1', 'redirect_uri': 'https://127.0.0.1'}
         authReply = requests.post('https://api.tdameritrade.com/v1/oauth2/token', headers=headers, data=data)
         
         #returned just to test that it's working
@@ -41,9 +41,9 @@ httpd = HTTPServer(('127.0.0.1', 443), Handler)
 
 #SSL cert
 httpd.socket = ssl.wrap_socket (httpd.socket,
-                                keyfile='SSL/key.pem',
-                                certfile='SSL/certificate.pem', server_side=True)
+                                keyfile='key.pem',
+                                certfile='certificate.pem', server_side=True)
 
-#PAUL CHANGE "HARTLEYCAP1" and your redirect URL if needed
-print ("POINT BROWSER TO: https://auth.tdameritrade.com/auth?response_type=code&redirect_uri=https://127.0.0.1&client_id=HARTLEYCAP1%40AMER.OAUTHAP")
+#CHANGE "AWESOMECAP1" and your redirect URL if needed
+print ("POINT BROWSER TO: https://auth.tdameritrade.com/auth?response_type=code&redirect_uri=https://127.0.0.1&client_id=AWESOMECAP1%40AMER.OAUTHAP")
 httpd.serve_forever()
